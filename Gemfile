@@ -58,6 +58,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   #Rspec Gem
   gem 'rspec-rails'
+  # This gem helps Capybara interact with the web browser.
+  gem 'webdrivers'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

@@ -1,9 +1,9 @@
-<% @profile.errors.full_messages.each do |error| %> 
-  <p><%= error %> </p> 
+<% @profile.errors.full_messages.each do |error| %>
+  <p><%= error %> </p>
 <% end %>
 
   <p> Edit <%= @profile.nickname %> Profile </p>
-  <%= form_for @profile do |f| %> 
+  <%= form_for @profile do |f| %>
 
       <%= f.hidden_field :user_id, value: params[:id]%>
 
@@ -22,7 +22,7 @@
         <br>
 
       <div>
-        <%= f.submit class: 'btn btn-primary col-4'%>
-        <%= link_to 'Go Back', :back, class: 'btn btn-secondary col-4' %>
+        <%= f.submit class: "btn btn-info mb-3 ml-3 radius-15" %>
+        <%= link_to 'Back', :back, class: "btn btn-secondary mb-3 ml-3 radius-15" %>
       </div>
   <% end %>

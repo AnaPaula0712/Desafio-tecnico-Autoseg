@@ -1,0 +1,41 @@
+<%# Tarefa 2
+Itens 2.2 e 2.3 - Criação de um relatório das Tasks completas do User, listando todos os comentários em ordem alfabética %>
+<div class="d-flex justify-content-center">
+  <h1 style="color:#007bff">List of your completed Tasks</h1>
+</div>
+
+<br>
+
+<div class="d-flex justify-content-center">
+  <h3 style="color:#28a745">Comments by Alphabetical Order</h3>
+</div>
+
+<br>
+
+<div class="d-flex justify-content-center" id="task_list">
+  <table>
+    <thead>
+      <tr class='text-center'>
+        <th>Tasks (ID)</th>
+        <th>Comments</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% complete_tasks_comments.each do |comment| %>
+        <tr class='text-center'>
+          <td><%= comment.task.id %></td>
+          <td><%= comment.body %></td>
+          <td><%= comment.task.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class='d-flex justify-content-center'>
+  <%= link_to 'Back', tasks_path, class: "btn btn-secondary mb-3 ml-3 radius-15" %>
+</div>

@@ -1,0 +1,29 @@
+<div class='form-group align-item-center container border' >
+  <div class='text-center'>
+    <h1 style="color:#007bff">Create a new Comment </h1>
+  </div>
+
+  <br>
+
+  <%= form_for ([@task, @comment]) do |f| %>
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4 text-center' >
+        <strong><%= f.label :body, 'Comment' %></strong>
+        <%= f.text_field :body, class: 'form-control mb-2', placeholder: 'Write a Comment'%>
+      </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4' align='center'>
+        <%= f.hidden_field :user_id, value: params[:id]%>
+        <%= f.submit 'Create', class: "btn btn-info mb-3 ml-3 radius-15"%>
+        <%= link_to 'My Tasks', tasks_path, class: "btn btn-success mb-3 ml-3 radius-15" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

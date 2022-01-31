@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'capybara/rails'
 
 RSpec.describe Task, type: :model do
   it 'Is created with default share status nil' do
@@ -12,5 +13,65 @@ RSpec.describe Task, type: :model do
   it 'Is created with default priority of 0' do
     expect(Task.new.priority.to_i).to eq 0
   end
-end
 
+  # Tarefa 3
+  # Item 3.1 - Spec de integração da atualização de uma Task
+  context 'Update a task' do
+    it 'Verify Edit Task' do
+      user = create(:user)
+      profile = create(:profile, user: user)
+      login_as(user)
+
+      task = Task.new
+      task.title = 'New Task'
+      task.description = 'Description'
+      task.priority = 'low'
+      task.user = user
+      task.save
+
+      visit "/tasks/#{user.tasks.last.id}/edit"
+
+      find('.edit_task') do
+        fill_in 'task[status]', with: 'complete'
+      end
+
+      click_button 'Update Task'
+      expect(page).to have_content('Task was successfully updated!')
+    end
+  end
+
+  # Item 3.1 - Spec de integração da exibição de uma Task específica
+  context 'Show Task' do
+    it 'View a specific task' do
+      user = create(:user)
+      profile = create(:profile, user: user)
+      login_as(user)
+
+      task = Task.new
+      task.title = 'New Task'
+      task.description = 'Description'
+      task.priority = 'low'
+      task.user = user
+      task.save
+
+      visit "/tasks/#{user.tasks.last.id}"
+      expect(page).to have_selector('h1', text: 'More information about your task')
+    end
+  end
+
+  # Item 3.2 - Spec unitário
+  context 'Creating a new task' do
+    it 'Verify New Task' do
+      user = create(:user)
+      login_as(user)
+
+      task = Task.new
+      task.title = 'New Task'
+      task.description = 'Description'
+      task.priority = 'low'
+      task.user = user
+
+    expect(task.valid?).to be_truthy
+    end
+  end
+end

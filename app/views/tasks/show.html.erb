@@ -1,0 +1,49 @@
+<div class='text-center'>
+  <h1 style="color:#007bff">More information about your task</h1>
+</div>
+
+<br>
+
+<h4 class="text-center" style="color:#007bff"> Task title: <%= @task.title %> </h4>
+
+<br>
+
+<div class='d-flex container justify-content-center' >
+  <table>
+    <thead>
+      <tr class='text-center'>
+        <th>Task created in</th>
+        <th>Task id</th>
+        <th>Task description</th>
+        <th>Task priority</th>
+        <th>Status</th>
+        <th>Nickname</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class='text-center'>
+        <td><%= time_ago_in_words(@task.created_at) %></td>
+        <td><%=@task.id %></td>
+        <td><%=@task.description %></td>
+        <td><%=@task.priority %></td>
+        <td><%=@task.status %></td>
+        <td><%=@task.user.profile.nickname %></td>
+        <td>
+        <div class="links d-flex flex-row m-2">
+          <%= link_to '', new_task_comment_path(@task), class: 'fa fa-comment mr-2' %>
+          <%= link_to '', edit_task_path(@task), class: 'fa fa-edit mr-1' %>
+          <%= link_to '', @task, class: 'fa fa-trash ml-1 mr-1', method: :delete, data: { confirm: 'Are you sure you want to delete the task?' } %>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<div class='d-flex justify-content-center'>
+  <%= link_to 'Back', :back, class: "btn btn-secondary mb-3 ml-3 radius-15" %>
+</div>

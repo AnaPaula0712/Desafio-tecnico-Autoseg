@@ -1,0 +1,46 @@
+<div class='form-group align-item-center container border' >
+  <div class='text-center'>
+    <h1 style="color:#007bff">Create a new Task</h1>
+  </div>
+
+  <%= form_for @task do |f| %>
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4 text-center'>
+        <strong><%= f.label :title, 'Title:' %></strong>
+        <%= f.text_field :title, class: 'form-control mb-2', placeholder: 'Write a title'%>
+      </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4' style='text-align:center'>
+        <strong><%= f.label :description, 'Task description:'%></strong>
+        <%= f.text_area :description, class: 'form-control mb-2', placeholder: 'Write a description', rows: '4'%>
+      </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4' style='text-align:center'>
+        <strong><%= f.label :priority, 'What is the priority level of this task?' %></strong>
+        <%= f.text_area :priority, class: 'form-control mb-2', placeholder: 'Low, medium or high', rows: '4' %>
+      </div>
+    </div>
+
+    <br>
+
+    <div class='row'>
+      <p class='col-4'></p>
+      <div class='col-4' style='text-align:center'>
+        <%= f.hidden_field :user_id, value: params[:id]%>
+        <%= f.submit class: "btn btn-info mb-3 ml-3 radius-15"%>
+        <%= link_to 'Back', :back, class: "btn btn-secondary mb-3 ml-3 radius-15" %>
+      </div>
+    </div>
+  <% end %>
+</div>

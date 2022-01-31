@@ -1,13 +1,12 @@
-class PlusesController < ApplicationController 
+class PlusesController < ApplicationController
   before_action :find_comment, :find_task, only: %i[create]
 
-
-  def create 
+  def create
     if plused?
       Pluse.where(comment: @comment)[0].destroy
       @comment.update(score: (@comment.score - 1))
       flash[:notice] = 'Comment Unplused'
-    elsif minused?  
+    elsif minused?
       Minuse.where(comment: @comment)[0].destroy
       @comment.update(score: (@comment.score + 1))
       flash[:notice] = 'Comment Unminused'
@@ -20,7 +19,7 @@ class PlusesController < ApplicationController
     redirect_to task_path(@task)
   end
 
-  private 
+  private
 
   def find_comment
     @comment = Comment.find(params[:comment_id])
@@ -28,6 +27,5 @@ class PlusesController < ApplicationController
 
   def find_task
     @task = Task.find(params[:task_id])
-  end 
+  end
 end
-
